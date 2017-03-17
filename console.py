@@ -25,15 +25,22 @@ class HBNBCommand(cmd.Cmd):
     def do_create(self, args):
         """Create a new Basemodel"""
         args = args.split()
-        if len(args) != 1:
-            print("** clas name missing **")
+        if len(args) == 0:
+            print("** class name missing **")
+            return
+
+        elif args [0] not in HBNBCommand.valid_classes:
+            print("** class doesn't exist **")
+            return
+
+        if len(args) > 1:
+            storage = self.parse_kwargs(args[1:])
+            new_obj = eval(args[0])(**storage)
         else:
-            if len(args) > 0 and args[0] in HBNBCommand.valid_classes:
-                new_obj = eval(args[0])()
-                print(new_obj.id)
-                new_obj.save()
-            else:
-                return
+            new_obj = eval(args[0])()
+
+        print(new_obj.id)
+        new_obj.save()
 
     def do_show(self, args):
         """Usage: show BaseModel 1234-1234-1234"""
