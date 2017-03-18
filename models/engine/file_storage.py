@@ -1,8 +1,14 @@
 #!/usr/bin/python3
 import json
 from datetime import datetime
-from models import *
-
+from models.base_model import BaseModel
+from models.user import User
+from models.amenity import Amenity
+from models.city import City
+from models.place import Place
+from models.review import Review
+from models.state import State
+import os
 
 class FileStorage:
     __file_path = "file.json"
@@ -17,6 +23,9 @@ class FileStorage:
     def new(self, obj):
         if obj is not None:
             FileStorage.__objects[obj.id] = obj
+
+    def close(self):
+        self.reload()
 
     def save(self):
         store = {}
