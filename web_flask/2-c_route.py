@@ -14,7 +14,7 @@ def hello_hbnb():
 
 
 @app.route('/c/<text>')
-def hello_c():
+def hello_c(text):
     return 'C {}'.format(text.replace("_", " "))
 
 if __name__ == "__main__":
