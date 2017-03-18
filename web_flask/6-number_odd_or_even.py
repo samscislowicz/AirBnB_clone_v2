@@ -39,7 +39,7 @@ def number_template(n=None):
 def odd_or_even(n=None):
     if n % 2 == 0:
         j = "even"
-    else: "odd"
+    else "odd"
     return render_template('6-number_odd_or_even.html', n=n, j=j)
 
 if __name__ == "__main__":
